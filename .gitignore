@@ -1,0 +1,27 @@
+# Environment Variables
+**/.env
+
+# Python
+**/__pycache__/
+*.pyc
+
+# Database
+*.db
+
+# Generated Reports
+generated_report.pdf
+
+# Uploads
+backend/uploads/
+
+# ChromaDB
+backend/vectorstore/chroma_db/
+
+# Virtual Environment
+venv/
+
+# Node Modules
+frontend/node_modules/
+
+# VS Code
+.vscode/
