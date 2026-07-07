@@ -1,7 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
-import ProfilePage from "./pages/ProfilePage";
-import HistoryPage from "./pages/HistoryPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import DashboardPage from "./pages/DashboardPage";
@@ -9,24 +7,28 @@ import RiskAnalysisPage from "./pages/RiskAnalysisPage";
 import KnowledgeAssistantPage from "./pages/KnowledgeAssistantPage";
 import ReportsPage from "./pages/ReportsPage";
 import FutureSimulatorPage from "./pages/FutureSimulatorPage";
+import ProfilePage from "./pages/ProfilePage";
+import HistoryPage from "./pages/HistoryPage";
 
 function ProtectedRoute({ children }) {
   const isLoggedIn = localStorage.getItem("isLoggedIn");
 
-  return isLoggedIn ? children : <Navigate to="/" />;
+  return isLoggedIn ? children : <Navigate to="/login" />;
 }
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* First screen */}
-        <Route path="/" element={<LoginPage />} />
 
-        {/* Register */}
+        {/* Default Route */}
+        <Route path="/" element={<Navigate to="/login" replace />} />
+
+        {/* Authentication */}
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
 
-        {/* Protected Pages */}
+        {/* Dashboard */}
         <Route
           path="/dashboard"
           element={
@@ -36,6 +38,7 @@ function App() {
           }
         />
 
+        {/* Risk Analysis */}
         <Route
           path="/risk-analysis"
           element={
@@ -45,6 +48,7 @@ function App() {
           }
         />
 
+        {/* Knowledge Assistant */}
         <Route
           path="/knowledge-assistant"
           element={
@@ -54,6 +58,7 @@ function App() {
           }
         />
 
+        {/* Reports */}
         <Route
           path="/reports"
           element={
@@ -63,6 +68,7 @@ function App() {
           }
         />
 
+        {/* Future Simulator */}
         <Route
           path="/future-simulator"
           element={
@@ -72,23 +78,29 @@ function App() {
           }
         />
 
+        {/* Profile */}
         <Route
-  path="/profile"
-  element={
-    <ProtectedRoute>
-      <ProfilePage />
-    </ProtectedRoute>
-  }
-/>
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <ProfilePage />
+            </ProtectedRoute>
+          }
+        />
 
-<Route
-  path="/history"
-  element={
-    <ProtectedRoute>
-      <HistoryPage />
-    </ProtectedRoute>
-  }
-/>
+        {/* Activity History */}
+        <Route
+          path="/history"
+          element={
+            <ProtectedRoute>
+              <HistoryPage />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Invalid Route */}
+        <Route path="*" element={<Navigate to="/login" replace />} />
+
       </Routes>
     </BrowserRouter>
   );
