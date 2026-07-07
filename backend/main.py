@@ -12,7 +12,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from pypdf import PdfReader
 
-import pandas as pd
+#import pandas as pd
 import chromadb
 import os
 
